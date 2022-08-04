@@ -20,11 +20,11 @@ d3.json(url).then(function(data) {
     let sortedDescValues = samplesArray.sort((a, b) => b.sample_values - a.sample_values);
 
     // log to console to check data
-    console.log(sortedDescValues[0]);
-    console.log(sortedDescValues[0]['id']);
-    console.log(`OTU IDs: ${sortedDescValues[0]['otu_ids'].slice(0, 10)}`);
-    console.log(`Sample Values: ${sortedDescValues[0]['sample_values'].slice(0, 10)}`);
-    console.log(`OTU Labels: ${sortedDescValues[0]['otu_labels'].slice(0, 10)}`);
+    // console.log(sortedDescValues[0]);
+    // console.log(sortedDescValues[0]['id']);
+    // console.log(`OTU IDs: ${sortedDescValues[0]['otu_ids'].slice(0, 10)}`);
+    // console.log(`Sample Values: ${sortedDescValues[0]['sample_values'].slice(0, 10)}`);
+    // console.log(`OTU Labels: ${sortedDescValues[0]['otu_labels'].slice(0, 10)}`);
 
     // plugging in data to start with on page
     function init() {
