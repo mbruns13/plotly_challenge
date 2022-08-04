@@ -108,7 +108,9 @@ d3.json(url).then(function(data) {
 
         // Initialize arrays
         let barTrace = {};
+        let barLayout = {};
         let bubbleTrace = {};
+        let bubbleLayout = {};
 
         // loop through samples to find matching data for id selected in dropdown
         for (let i = 0; i < sortedDescValues.length; i++) {
@@ -124,8 +126,15 @@ d3.json(url).then(function(data) {
                     x: [currValues.slice(0, 10).reverse()],
                     y: [currOtuIDs.slice(0, 10).map(i => `OTU ${i}`).reverse()],
                     text: [currOtuLabels.slice(0, 10).reverse()],
+                    title: `Top 10 OTUs Found for Subject ID ${currsubjectID}`,
+
 
                 };
+
+                let barLayout = {
+                    title: `Top 10 OTUs Found for Subject ID ${currsubjectID}`,
+                }
+
 
                 let bubbleTrace = {
                     x: [currOtuIDs],
@@ -137,11 +146,17 @@ d3.json(url).then(function(data) {
                         color: currOtuIDs
                     },
                     text: [currOtuLabels],
+                };
 
+                let bubbleLayout = {
+                    title: `Samples from Subject ID ${currsubjectID}`
                 };
 
                 Plotly.restyle("bar", barTrace);
+                Plotly.relayout("bar", barLayout);
                 Plotly.restyle("bubble", bubbleTrace);
+                Plotly.relayout("bubble", bubbleLayout);
+
             }
         }
     }
