@@ -28,7 +28,7 @@ d3.json(url).then(function(data) {
 
     // plugging in data to start with on page
     function init() {
-        sampleID = sortedDescValues[0]['id'];
+        subjectID = sortedDescValues[0]['id'];
         otuIDs = sortedDescValues[0]['otu_ids'];
         values = sortedDescValues[0]['sample_values'];
         otuLabels = sortedDescValues[0]['otu_labels'];
@@ -56,7 +56,7 @@ d3.json(url).then(function(data) {
         }];
 
         let barLayout = {
-            title: `Top 10 OTUs Found for Sample ID ${sampleID}`,
+            title: `Top 10 OTUs Found for Subject ID ${subjectID}`,
             // margin: ,
         };
 
@@ -75,7 +75,7 @@ d3.json(url).then(function(data) {
         }];
 
         let bubbleLayout = {
-            title: "Samples"
+            title: `Samples from Subject ID ${subjectID}`
         }
 
         Plotly.newPlot("bar", barTrace, barLayout);
@@ -115,7 +115,7 @@ d3.json(url).then(function(data) {
 
             if (sortedDescValues[i]['id'] == currentID) {
 
-                currSampleID = sortedDescValues[i]['id'];
+                currsubjectID = sortedDescValues[i]['id'];
                 currOtuIDs = sortedDescValues[i]['otu_ids'];
                 currValues = sortedDescValues[i]['sample_values'];
                 currOtuLabels = sortedDescValues[i]['otu_labels'];
