@@ -59,7 +59,7 @@ d3.json(url).then(function(data) {
             mode: "gauge",
             gauge: {
                 axis: {
-                    range: [null, 9],
+                    range: [0, 9],
                 }
             },
         }];
@@ -143,7 +143,6 @@ d3.json(url).then(function(data) {
                 gaugeTrace = {
                     value: metadataValues[6],
                 };
-
             }
         };
 
