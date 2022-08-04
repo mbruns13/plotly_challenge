@@ -56,7 +56,7 @@ d3.json(url).then(function(data) {
         }];
 
         let barLayout = {
-            title: "Top 10 OTUs Found",
+            title: `Top 10 OTUs Found for Sample ID ${sampleID}`,
             // margin: ,
         };
 
