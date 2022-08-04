@@ -45,6 +45,35 @@ d3.json(url).then(function(data) {
         for (let i = 0; i < metadataKeys.length; i++)
             demoTable.append("tr").attr("class", metadataKeys[i]).text(`${metadataKeys[i]}: ${metadataValues[i]}`);
 
+        //BONUS
+        //initial data for gauge
+        let gaugeData = [{
+            value: metadataValues[6],
+            title: {
+                text: "Belly Button Washing Frequency <br> Scrubs Per Week",
+                // font: {
+                //     size: 14
+                // }
+            },
+            type: "indicator",
+            mode: "gauge",
+            gauge: {
+                axis: {
+                    range: [null, 9],
+                }
+            },
+        }];
+
+        // let gaugeLayout = {
+        //     // colorscale: "greens",
+        //     //     width: 600, 
+        //     //     height: 500, 
+        //     //     margin: { 
+        //     //         t: 0, 
+        //     //         b: 0 
+        //     //     } 
+        // };
+        Plotly.newPlot('gauge', gaugeData);
 
         // initial data for bar, using first ID
         let barTrace = [{
@@ -57,7 +86,6 @@ d3.json(url).then(function(data) {
 
         let barLayout = {
             title: `Top 10 OTUs Found for Subject ID ${subjectID}`,
-            // margin: ,
         };
 
         // initial data for bubble, using first ID
@@ -75,7 +103,12 @@ d3.json(url).then(function(data) {
         }];
 
         let bubbleLayout = {
-            title: `Samples from Subject ID ${subjectID}`
+            title: `Samples from Subject ID ${subjectID}`,
+            xaxis: {
+                title: {
+                    text: 'OTU ID'
+                }
+            }
         }
 
         Plotly.newPlot("bar", barTrace, barLayout);
@@ -93,6 +126,8 @@ d3.json(url).then(function(data) {
         // console.log(dataset)
         console.log(currentID)
 
+        let gaugeTrace = {};
+
         // loop through samples to find matching data for id selected in dropdown
         for (let i = 0; i < metadataArray.length; i++) {
 
@@ -103,6 +138,12 @@ d3.json(url).then(function(data) {
                 let metadataValues = Object.values(metadataArray[i]);
                 for (let i = 0; i < metadataKeys.length; i++)
                     d3.select(`.${metadataKeys[i]}`).text(`${metadataKeys[i]}: ${metadataValues[i]}`);
+
+                // update bonus gauge chart value
+                gaugeTrace = {
+                    value: metadataValues[6],
+                };
+
             }
         };
 
@@ -152,6 +193,7 @@ d3.json(url).then(function(data) {
                     title: `Samples from Subject ID ${currsubjectID}`
                 };
 
+                Plotly.restyle("gauge", gaugeTrace)
                 Plotly.restyle("bar", barTrace);
                 Plotly.relayout("bar", barLayout);
                 Plotly.restyle("bubble", bubbleTrace);
